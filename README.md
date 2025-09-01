@@ -7,6 +7,10 @@ Experiment with Java Spring Boot with a simple To Do API with actual data persis
 1. Run `docker-compose up` to run the Postgres database
 1. Run application with `./mvnw spring-boot:run`
 
+## Implementation Details
+* The database is seeded with two starter todos
+* The REST API is visualized using Swagger at `GET /`
+
 ### Accessing the database
 Run `docker exec -it todo-db-1 psql -d springboot-todo` to get access to the database via the `psql` cli
 
