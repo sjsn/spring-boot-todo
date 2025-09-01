@@ -37,7 +37,7 @@ public class Todo {
     @Setter
     private Instant updatedAt;
 
-    public Todo() {}
+    protected Todo() {}
 
     public Todo(String name) {
         this.name = name;
@@ -48,7 +48,9 @@ public class Todo {
 
     @Override
     public String toString() {
-        String template = "Todo: {id:%d, name:'%s', isComplete:'%s', createdAt:'%s', updatedAt:'%s'}";
-        return String.format(template, this.id, this.name, this.isComplete, this.createdAt, this.updatedAt);
+        return String.format(
+            "Todo: {id:%d, name:'%s', isComplete:'%s', createdAt:'%s', updatedAt:'%s'}",
+            this.id, this.name, this.isComplete, this.createdAt, this.updatedAt
+        );
     }
 }

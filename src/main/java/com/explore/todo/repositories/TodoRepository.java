@@ -1,7 +1,7 @@
 package com.explore.todo.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.explore.todo.models.Todo;
 
-public interface TodoRepository extends CrudRepository<Todo, Long> { }
+public interface TodoRepository extends JpaRepository<Todo, Long> { }
