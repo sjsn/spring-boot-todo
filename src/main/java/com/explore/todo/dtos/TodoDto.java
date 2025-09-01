@@ -8,5 +8,5 @@ import lombok.Getter;
 public class TodoDto {
     private final long id;
     private final String name;
-    private final boolean isCompleted;
+    private final boolean complete;
 }

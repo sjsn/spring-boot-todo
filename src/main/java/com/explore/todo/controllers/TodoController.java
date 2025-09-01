@@ -2,6 +2,7 @@ package com.explore.todo.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.explore.todo.dtos.AddTodoRequest;
+import com.explore.todo.dtos.PatchTodoRequest;
 import com.explore.todo.dtos.TodoDto;
 import com.explore.todo.mappers.TodoMapper;
 import com.explore.todo.repositories.TodoRepository;
@@ -36,7 +38,7 @@ public class TodoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TodoDto> getTodoById(@PathVariable Long id) {
+    public ResponseEntity<TodoDto> getTodoById(@PathVariable(name = "id") Long id) {
         var todo = todoRepository.findById(id).orElse(null);
 
         if (todo == null) {
@@ -54,5 +56,22 @@ public class TodoController {
         var path = uriBuilder.path("/todos/{id}").buildAndExpand(todoDto.getId()).toUri();
 
         return ResponseEntity.created(path).body(todoDto);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<TodoDto> patchTodo(@PathVariable(name = "id") Long id, @RequestBody PatchTodoRequest request) {
+        var todo = todoRepository.findById(id).orElse(null);
+
+        if (todo == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        todoMapper.update(request, todo);
+
+        var updatedTodo = todoRepository.save(todo);
+
+        var todoDto = todoMapper.toDto(updatedTodo);
+
+        return ResponseEntity.ok(todoDto);
     }
 }

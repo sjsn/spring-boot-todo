@@ -2,6 +2,9 @@ package com.explore.todo.models;
 
 import java.time.Instant;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,10 +34,12 @@ public class Todo {
 
     @Getter
     @Setter
+    @CreationTimestamp
     private Instant createdAt;
 
     @Getter
     @Setter
+    @UpdateTimestamp
     private Instant updatedAt;
 
     protected Todo() {}
