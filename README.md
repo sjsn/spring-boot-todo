@@ -9,7 +9,7 @@ Experiment with Java Spring Boot with a simple To Do API with actual data persis
 
 ## Implementation Details
 * The database is seeded with two starter todos
-* The REST API is visualized using Swagger at `GET /`
+* The REST API is visualized using Swagger at [`GET /`](localhost:3000/)
 
 ### Accessing the database
 Run `docker exec -it todo-db-1 psql -d springboot-todo` to get access to the database via the `psql` cli
@@ -17,3 +17,6 @@ Run `docker exec -it todo-db-1 psql -d springboot-todo` to get access to the dat
 #### Helpful `psql` commands
 1. `\dt` to list the tables
 1. `\d <tablename>` to table details
+
+---
+![todo-api-example](./todo-api-example.png)
